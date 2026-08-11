@@ -18,6 +18,12 @@ _private/
 notes.txt
 brainstorm.md
 
+# Internal strategy/metrics docs (local Claude Code context only, not public)
+/CLAUDE.md
+resources/MASTER_INDEX.md
+resources/GITHUB_SETUP_CHECKLIST.md
+resources/HOW_TO_USE_CLAUDE_MD.md
+
 # Compiled outputs (if generating from source)
 *.pdf
 *.epub
