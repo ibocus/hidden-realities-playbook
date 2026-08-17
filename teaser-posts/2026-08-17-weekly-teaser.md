@@ -2,7 +2,7 @@
 
 **Source story**: stories/2026-08-16_document-structure-access.md
 
-**Status**: READY TO POST (Publora scheduling FAILED, see below)
+**Status**: AUTO-SCHEDULED via Publora for 2026-08-19 8:00 AM Mauritius (postGroupId `6a8297bc5fc0ebeb9c9d7098`) — see note below on how
 
 **Post type**: Process Insight
 
@@ -41,25 +41,12 @@ More of what I'm building: github -> ibocus.github.io . CISM prep + toolkits -> 
 
 ---
 
-## Publora scheduling result: FAILED
+## Publora scheduling result: SCHEDULED (done manually, outside this routine)
 
-Target schedule: Wednesday 2026-08-19, 8:00 AM Mauritius (2026-08-19T04:00:00.000Z).
+The cloud routine's own attempt to call Publora failed at the network layer (this cloud sandbox's egress proxy blocks `api.publora.com` by policy, confirmed by repeated failures) — that path is not fixable from inside the routine, so the routine no longer attempts it (see repo CLAUDE.md, updated 2026-08-17).
 
-The `create-post` call to `https://api.publora.com/api/v1/create-post` failed at the network layer before reaching Publora: this session's outbound egress proxy returned a policy denial.
+This post was subsequently scheduled manually via Publora from a local Claude Code session:
 
-Proxy status output:
-
-```
-"recentRelayFailures": [
-  {
-    "ts": "2026-08-17T04:19:02.756Z",
-    "kind": "connect_rejected",
-    "detail": "gateway answered 403 to CONNECT (policy denial or upstream failure)",
-    "host": "api.publora.com:443"
-  }
-]
-```
-
-curl exit code: 56 (recv failure, connection rejected by proxy before TLS).
-
-Per this environment's proxy guidance, 403 policy denials on the egress proxy must not be retried or routed around; the correct action is to report the blocked host. `api.publora.com` is not currently allowed by this session's network policy, so the post was NOT scheduled anywhere. It needs to be posted manually, or the environment's egress allow-list needs to include `api.publora.com` before this routine can auto-schedule again.
+- **postGroupId**: `6a8297bc5fc0ebeb9c9d7098`
+- **Status**: `scheduled`
+- **Scheduled time**: 2026-08-19T04:00:00.000Z (Wednesday, 8:00 AM Mauritius)
